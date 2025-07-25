@@ -2,12 +2,11 @@
 import React, { useEffect, useRef } from "react";
 
 type Props = {
-  id: number
   dir: string
   name: string
 }
 
-export default function GameProduct({ id, dir, name }: Props) {
+export default function GameProduct({ dir, name }: Props) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     
     useEffect(() => {
