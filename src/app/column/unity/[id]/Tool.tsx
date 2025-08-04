@@ -45,19 +45,21 @@ function highlightKeywords(text: string): string {
 
 export default function Tool({ features = [], steps = [] }: Props) {
   const params = useSearchParams();
+  const title = params.get('title');
+  const excerpt = params.get('excerpt');
 
   return (
     <div className="space-y-4 max-w-3xl mx-auto backdrop-blur-md bg-white/70 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-700 rounded-2xl shadow-xl p-8 md:p-10 space-y-6 transition-all">
       {/* Header */}
       <div className="text-2xl font-bold text-gray-900 tracking-tight leading-snug border-l-4 border-indigo-500 pl-4">
         <h1 className="text-3xl font-bold text-neutral-800 dark:text-neutral-100 tracking-tight">
-          {params.get('title')}
+          {title}
         </h1>
       </div>
 
       {/* Description */}
       <p className="text-neutral-600 dark:text-neutral-200 tracking-tight whitespace-pre-line">
-        {params.get('excerpt')}
+        {excerpt}
       </p>
       {/* Topic */}
       {/* <span className="inline-block text-sm md:text-base font-semibold tracking-wider uppercase bg-indigo-100 text-indigo-800 px-5 py-2 rounded-md shadow-sm mb-2">
