@@ -6,11 +6,12 @@ type GameProps = {
   key: string;
   width: number;
   height: number;
+  version: string;
 };
 
 const gameList: GameProps[] = [
-  { label: '龍之軌跡', key: `dragon's-trail`, width: 640, height: 960 },
-  { label: '香蕉狂熱份子', key: 'banana-mania', width: 480, height: 640 },
+  { label: '龍之軌跡', key: `dragon's-trail`, width: 640, height: 960, version: '1.0.0' },
+  { label: '香蕉狂熱份子', key: 'banana-mania', width: 480, height: 640, version: '1.0.0' },
 ];
 
 export default function Remaster() {
@@ -19,19 +20,19 @@ export default function Remaster() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (active == null) {
+    const config = gameList.filter(({ key }) => key === active).pop();
+    if (!config) {
       return;
     }
-    const dir = `./game/${active}/Build`; // ✅ 改為根據 active 動態組合
+    const dir = `./game/${config.key}/Build`; // ✅ 改為根據 active 動態組合
     const script = document.createElement('script');
     script.src = `${dir}/Web.loader.js`; // 根據你的輸出路徑調整
     script.onload = () => {
       const canvas = canvasRef.current;
       const div = divRef.current;
       if (!div || !canvas) return;
-      const config = gameList.filter(({ key }) => key === active).pop();
-      const width = config?.width || 1;
-      const height = config?.height || 1;
+      const width = config.width || 1;
+      const height = config.height || 1;
       const aspect = width / height;
       const targetWidth = aspect * div.clientHeight;
       canvas.style.width = `${targetWidth}px`;
@@ -43,8 +44,8 @@ export default function Remaster() {
           frameworkUrl: `${dir}/Web.framework.js`,
           codeUrl: `${dir}/Web.wasm`,
           streamingAssetsUrl: `${dir}/../StreamingAssets`,
-          productName: active || '',
-          productVersion: '1.0',
+          productName: config.key || '',
+          productVersion: config.version,
         })
         .then(() => {
           console.log('Unity Instance loaded.');
@@ -62,7 +63,7 @@ export default function Remaster() {
   return (
     <section className="max-w-3xl mx-auto backdrop-blur-md p-8 md:p-10 space-y-6 transition-all">
       <h2 className="text-xl font-semibold text-neutral-700 dark:text-neutral-200 mb-4">
-        復刻遊戲
+        復刻遊戲(點擊加載遊戲)
       </h2>
       <div className="flex gap-4 mb-6">
         {gameList.map((game) => (
