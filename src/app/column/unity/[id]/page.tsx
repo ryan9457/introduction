@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function SpriteAutoSlicer({ params }: Props) {
   const id = +(await params).id;
-  const path = '/sprite-auto-slicer';
+  const path = '../../sprite-auto-slicer';
 
   return (
     <Suspense>

@@ -22,7 +22,7 @@ export default function Remaster() {
     if (active == null) {
       return;
     }
-    const dir = `/game/${active}/Build`; // ✅ 改為根據 active 動態組合
+    const dir = `./game/${active}/Build`; // ✅ 改為根據 active 動態組合
     const script = document.createElement('script');
     script.src = `${dir}/Web.loader.js`; // 根據你的輸出路徑調整
     script.onload = () => {
