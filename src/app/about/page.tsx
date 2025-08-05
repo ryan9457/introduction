@@ -4,7 +4,7 @@ import Timeline from './timeline/page';
 
 export default function About() {
   return (
-    <div className="min-w-screen min-h-screen py-16 px-4 bg-white dark:bg-neutral-900">
+    <div className="min-h-screen py-16 px-4 bg-white dark:bg-neutral-900">
       <Intro />
       <Timeline />
       <SkillTree />

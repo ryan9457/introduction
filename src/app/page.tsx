@@ -7,7 +7,7 @@ import Column from './column/page';
 export default function Home() {
   // redirect('/portfolio/dragon\'s-trail');
   return (
-    <div className="min-w-screen min-h-screen bg-neutral-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-100">
+    <div className="min-h-screen bg-neutral-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-100">
       <section className="relative px-6 py-24 text-center dark:from-purple-900 dark:to-yellow-900">
         <h1 className="text-5xl font-extrabold mb-4 tracking-tight leading-tight">Ryan Chen</h1>
         <p className="max-w-xl mx-auto text-lg text-gray-700 dark:text-gray-200">
