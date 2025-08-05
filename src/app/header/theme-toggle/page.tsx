@@ -15,7 +15,7 @@ export default function ThemeToggle() {
   };
 
   useEffect(() => {
-    toggleTheme();
+    // toggleTheme();
     setIsDark(document.documentElement.classList.contains('dark'));
   }, []);
 
