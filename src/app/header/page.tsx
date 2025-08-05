@@ -13,7 +13,7 @@ const categories: { name: string; href: string }[] = [
 export default function Header() {
   // const pathname = usePathname();
   return (
-    <header className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black transition-colors duration-300">
+    <header className="fixed top-0 left-0 w-full shadow z-50 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* LOGO 或站名 */}
         <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">
