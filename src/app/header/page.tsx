@@ -4,16 +4,16 @@
 import Link from 'next/link';
 import ThemeToggle from './theme-toggle/page';
 
-const categories = [
-  { name: 'About', href: '/about' },
-  { name: 'Column', href: '/column' },
+const categories: { name: string; href: string }[] = [
+  // { name: 'About', href: '/about' },
+  // { name: 'Column', href: '/column' },
   // { name: 'Contact', href: '/contact' },
 ];
 
 export default function Header() {
   // const pathname = usePathname();
   return (
-    <header className="w-full border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black transition-colors duration-300">
+    <header className="min-w-screen border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* LOGO 或站名 */}
         <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">

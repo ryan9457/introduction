@@ -34,7 +34,7 @@ export default function Timeline() {
   const [_, setHovered] = useState<number | null>(null);
 
   return (
-    <section className="relative px-4 sm:px-10 py-16 bg-white dark:bg-neutral-900">
+    <section className="relative max-w-3xl mx-auto px-4 sm:px-10 py-16 bg-white dark:bg-neutral-900">
       <h2 className="text-2xl sm:text-3xl font-bold mb-10 text-gray-800 dark:text-gray-100">
         歷程
       </h2>

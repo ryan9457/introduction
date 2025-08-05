@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
 type GameProps = {
@@ -27,7 +28,7 @@ export default function Remaster() {
     const dir = `./game/${config.key}/Build`; // ✅ 改為根據 active 動態組合
     const script = document.createElement('script');
     script.src = `${dir}/Web.loader.js`; // 根據你的輸出路徑調整
-    script.onload = () => {
+    script.onload = async () => {
       const canvas = canvasRef.current;
       const div = divRef.current;
       if (!div || !canvas) return;
@@ -36,9 +37,15 @@ export default function Remaster() {
       const aspect = width / height;
       const targetWidth = aspect * div.clientHeight;
       canvas.style.width = `${targetWidth}px`;
-
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (window as any)
+      const instance = (window as any).unityInstance;
+      if (instance) {
+        await instance.Quit();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).unityInstance = null;
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).unityInstance = await (window as any)
         .createUnityInstance(canvas, {
           dataUrl: `${dir}/Web.data`,
           frameworkUrl: `${dir}/Web.framework.js`,
@@ -46,9 +53,6 @@ export default function Remaster() {
           streamingAssetsUrl: `${dir}/../StreamingAssets`,
           productName: config.key || '',
           productVersion: config.version,
-        })
-        .then(() => {
-          console.log('Unity Instance loaded.');
         })
         .catch((err: Error) => {
           console.error('failed to load Unity Instance', err);
@@ -61,7 +65,7 @@ export default function Remaster() {
   }, [active]);
 
   return (
-    <section className="max-w-3xl mx-auto backdrop-blur-md p-8 md:p-10 space-y-6 transition-all">
+    <section className="bg-white dark:bg-neutral-900 backdrop-blur-md p-8 md:p-10 space-y-6 transition-all">
       <h2 className="text-xl font-semibold text-neutral-700 dark:text-neutral-200 mb-4">
         復刻遊戲(點擊加載遊戲)
       </h2>

@@ -44,6 +44,7 @@ const skills: { category: string; items: Skill[] }[] = [
     items: [
       { name: 'Spine', level: Level.Advanced },
       { name: 'Particle', level: Level.Advanced },
+      { name: 'GSAP', level: Level.Advanced },
     ],
   },
 ];
@@ -56,21 +57,19 @@ const levelColor = [
 
 export default function SkillTree() {
   return (
-    <section className="max-w-5xl mx-auto px-4 py-16">
-      <h2 className="text-2xl font-bold mb-6 text-neutral-800 dark:text-neutral-100">
-        技能技能 Skill Overview
-      </h2>
+    <section className="max-w-3xl mx-auto px-4 py-16">
+      <h2 className="text-2xl font-bold mb-6 text-neutral-800 dark:text-neutral-100">技能樹</h2>
       <div className="space-y-10">
         {skills.map((group, idx) => (
           <div key={idx}>
             <h3 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 uppercase mb-4">
               {group.category}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
               {group.items.map((skill, index) => (
                 <div
                   key={index}
-                  className="rounded-lg border border-neutral-200 dark:border-neutral-700 p-3 flex flex-col justify-between h-[90px] shadow-sm hover:shadow-md transition-shadow duration-200 bg-white/50 dark:bg-neutral-900/40"
+                  className="rounded-lg border border-neutral-200 dark:border-neutral-700 p-3 flex flex-col justify-between h-[70px] shadow-sm hover:shadow-md transition-shadow duration-200 bg-white/50 dark:bg-neutral-900/40"
                 >
                   <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100">
                     {skill.name}
@@ -80,7 +79,7 @@ export default function SkillTree() {
                       return (
                         <div
                           key={step}
-                          className={`w-1/3 h-2 rounded-sm ${skill.level < index ? 'bg-neutral-200 dark:bg-neutral-800' : levelColor[skill.level]}`}
+                          className={`w-1/3 h-4 rounded-sm ${skill.level < index ? 'bg-neutral-200 dark:bg-neutral-800' : levelColor[skill.level]}`}
                         />
                       );
                     })}
