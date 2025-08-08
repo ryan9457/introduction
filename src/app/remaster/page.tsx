@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type GameProps = {
   label: string;
@@ -10,15 +11,30 @@ type GameProps = {
   version: string;
 };
 
-const gameList: GameProps[] = [
-  { label: '龍之軌跡', key: `dragon's-trail`, width: 640, height: 960, version: '1.0.0' },
-  { label: '香蕉狂熱份子', key: 'banana-mania', width: 480, height: 640, version: '1.0.0' },
-];
-
 export default function Remaster() {
+  const { t } = useTranslation();
   const [active, setActive] = useState<string | null>(null);
   const divRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const gameList: GameProps[] = useMemo(() => {
+    return [
+      {
+        label: `${t('remaster_game_2')}`,
+        key: 'banana-mania',
+        width: 480,
+        height: 640,
+        version: '1.0.0',
+      },
+      {
+        label: `${t('remaster_game_1')}`,
+        key: `dragon's-trail`,
+        width: 640,
+        height: 960,
+        version: '1.0.0',
+      },
+    ];
+  }, [t]);
 
   useEffect(() => {
     const config = gameList.filter(({ key }) => key === active).pop();
@@ -81,12 +97,12 @@ export default function Remaster() {
       document.body.removeChild(script);
       window.removeEventListener('resize', handleResize);
     };
-  }, [active]);
+  }, [active, gameList]);
 
   return (
     <section className="bg-white dark:bg-neutral-900 backdrop-blur-md p-8 md:p-10 space-y-6 transition-all">
       <h2 className="text-xl font-semibold text-neutral-700 dark:text-neutral-200 mb-4">
-        復刻遊戲(點擊加載遊戲)
+        {t('remaster_tips')}
       </h2>
       <div className="flex gap-4 mb-6">
         {gameList.map((game) => (

@@ -6,6 +6,7 @@ import { MdLightMode } from 'react-icons/md';
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
+
   const toggleTheme = () => {
     const html = document.documentElement;
     const nextTheme = html.classList.contains('dark') ? 'light' : 'dark';
@@ -15,8 +16,7 @@ export default function ThemeToggle() {
   };
 
   useEffect(() => {
-    // toggleTheme();
-    setIsDark(document.documentElement.classList.contains('dark'));
+    if (localStorage.getItem('theme') === 'dark') toggleTheme();
   }, []);
 
   return (

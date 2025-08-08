@@ -2,7 +2,10 @@
 
 // import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import LanguageSelector from './language-selector/LanguageSelector';
 import ThemeToggle from './theme-toggle/page';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 const categories: { name: string; href: string }[] = [
   // { name: 'About', href: '/about' },
@@ -12,13 +15,20 @@ const categories: { name: string; href: string }[] = [
 
 export default function Header() {
   // const pathname = usePathname();
+  const { t } = useTranslation();
+  const [title, setHomeTitle] = useState<string | null>(null);
+
+  useEffect(() => {
+    setHomeTitle(t('portfolio')); // 等 client side 確定語言後才設值
+  }, [t]);
+
   return (
     <header className="fixed top-0 left-0 w-full shadow z-50 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* LOGO 或站名 */}
         <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">
           {/* {categories.filter(({ href }) => href === pathname)[0]?.name || ''} */}
-          Portfolio
+          {title}
         </Link>
         {/* 導覽列 */}
         <nav className="flex items-center space-x-6">
@@ -31,6 +41,7 @@ export default function Header() {
               {item.name}
             </Link>
           ))}
+          <LanguageSelector />
           {/* 主題切換按鈕 */}
           <ThemeToggle />
         </nav>
