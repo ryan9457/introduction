@@ -1,9 +1,12 @@
-export default function Intro() {
+export default function Profile() {
   return (
     <section className="relative px-6 py-10 md:py-16">
       <div className="max-w-3xl mx-auto backdrop-blur-md bg-white/70 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-700 rounded-2xl shadow-xl p-8 md:p-10 space-y-6 transition-all">
         <h1 className="text-3xl font-bold text-neutral-800 dark:text-neutral-100 tracking-tight">
-          介紹
+          簡介
+        </h1>
+        <h1 className="text-3xl font-bold text-neutral-800 dark:text-neutral-100 tracking-tight">
+          Profile
         </h1>
         <p className="text-neutral-700 dark:text-neutral-300 text-lg leading-relaxed">
           我是一名遊戲工程師，擁有將近 7 年的休閒類遊戲開發經驗。

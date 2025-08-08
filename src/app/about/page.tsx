@@ -1,4 +1,4 @@
-import Intro from './intro/page';
+import Intro from './profile/page';
 import SkillTree from './skill-tree/page';
 import Timeline from './timeline/page';
 
