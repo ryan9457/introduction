@@ -5,7 +5,7 @@ import Chanllenge from './challenge/page';
 import Column from './column/page';
 import { useTranslation } from 'react-i18next';
 
-export default function Home() {
+export default function Portfolio() {
   const { t, i18n } = useTranslation();
 
   if (!i18n.isInitialized) return null;
