@@ -33,17 +33,14 @@ export default function LanguageSelector() {
       <select
         value={lang}
         onChange={(e) => onSelect(e.target.value)}
-        className="appearance-none bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="bg-white dark:bg-black text-gray-800 dark:text-white transition-colors duration-300"
       >
         {languages.map((l) => (
-          <option key={l.code} value={l.code} className="bg-white dark:bg-gray-800">
+          <option key={l.code} value={l.code} className=" text-s">
             {l.label}
           </option>
         ))}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
-        ▼
-      </div>
     </div>
   );
 }
